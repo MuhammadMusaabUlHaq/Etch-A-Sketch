@@ -1,0 +1,21 @@
+.container{
+    margin: 0px;
+    padding: 0px;
+}
+
+.color-picker{
+    border: none;
+
+}
+
+.container{
+    display: flex;
+    flex-flow: wrap;
+    width: 1000px;
+    border: 10px solid grey;
+}
+
+.grid{
+    border: 10px solid white;
+    
+}
