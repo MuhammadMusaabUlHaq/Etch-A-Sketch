@@ -1,21 +1,28 @@
 .container{
-    margin: 0px;
-    padding: 0px;
+    border: 10px double rgb(56, 56, 56);
+    width: 550px;
+    height: 550px;
+    fill: grey;
+    box-shadow: 0px 8px 10px rgba(65, 105, 225, 0.5);
+    background-color: whitesmoke;
+    display: grid;
+    grid-template-columns: repeat(16,auto);
 }
 
-.color-picker{
-    border: none;
-
-}
-
-.container{
+.body{
     display: flex;
-    flex-flow: wrap;
-    width: 1000px;
-    border: 10px solid grey;
+    background-color: wheat;
+    gap: 130px;
+    justify-content: center;
+}
+
+.header{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
 }
 
 .grid{
-    border: 10px solid white;
-    
+    background-color: violet;
 }
