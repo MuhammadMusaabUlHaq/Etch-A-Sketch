@@ -1,54 +1,73 @@
-const sizeSlider = document.querySelector('#gridSize')
+const DEFAULT_SIZE = 16
+
+mode = 'color'
+colorMode = document.querySelector('.color')
+eraserMode = document.querySelector('.eraser')
+rainMode = document.querySelector('.rain')
+clearMode = document.querySelector('.clear')
+slider = document.querySelector('#gridSize')
+
+sliderSizeDisplay = document.querySelector('.sliderValue')
+
+colorMode.onclick = (e)=>{
+    mode = 'color'
+}
+eraserMode.onclick = (e)=>{
+    mode = 'eraser'
+}
+rainMode.onclick = (e)=>{
+    mode = 'rain'
+}
+clearMode.onclick = ()=>{
+    clear()
+}
+slider.onmousemove = (e) => sliderSizeDisplay.innerText = `${slider.value} x ${slider.value}`
+slider.onchange = (e) => {
+    clear()
+    gridSize(e.target.value)
+}
 
 
 
 
+container = document.querySelector('.container')
 
+function clear(){
+    gridAll = document.querySelectorAll('.grid')
+    gridAll.forEach(grid => {
+        grid.remove()
+    });
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-function gridCreation() {
-    let Parent = document.querySelector('.container')
-    
-    let size = sizeSlider.value * sizeSlider.value
-    Parent.style.gridTemplateColumns = `repeat(${size},auto)`
-    
-    for (let num = 0; num < size; num++) {
-        let grid = document.createElement("div")
-        Parent.appendChild(grid)
+function gridSize(size){
+    fullSize = size * size 
+    container.style.gridTemplateColumns = `repeat(${size},auto)`
+    for (let loop = 0; loop < fullSize; loop++) {
+        grid = document.createElement('div')
+        container.appendChild(grid)
         grid.classList.add('grid')
-
-
+        grid.addEventListener('mouseover', (e)=>changeColor(e))
         
-
-        grid.addEventListener('mouseover', (e) => {
-            changeColor(e)
-        })
     }
 }
 
-const valueParagraph = document.querySelector('.sliderValue')
-
-function valueDisplay() {
-    valueParagraph.innerText = sizeSlider.value
-}
-
-function changeColor(event) {
-    event.target.style.backgroundColor = '#fefefe'
+function changeColor(e) {
+    if (mode === 'rain') {
+      const randomR = Math.floor(Math.random() * 256)
+      const randomG = Math.floor(Math.random() * 256)
+      const randomB = Math.floor(Math.random() * 256)
+      e.target.style.backgroundColor = `rgb(${randomR}, ${randomG}, ${randomB})`
+    } else if (mode === 'color') {
+      e.target.style.backgroundColor = document.querySelector('#color').value
+    } else if (mode === 'eraser') {
+      e.target.style.backgroundColor = '#fdfdfd'
+    }
   }
 
 
-gridCreation()
-valueDisplay()
-
+window.onload = () => {
+    gridSize(DEFAULT_SIZE)
+    slider.value = 16
+    sliderSizeDisplay.innerText = '16 x 16'
+  }
+  
