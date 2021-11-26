@@ -1,4 +1,4 @@
-
+const sizeSlider = document.querySelector('#gridSize')
 
 
 
@@ -20,9 +20,9 @@
 
 function gridCreation() {
     let Parent = document.querySelector('.container')
-    let size1 = document.querySelector('#gridSize').value
-    let size = size1*size1
-    Parent.style.gridTemplateColumns = `repeat(${size1},auto)`
+    
+    let size = sizeSlider.value * sizeSlider.value
+    Parent.style.gridTemplateColumns = `repeat(${size},auto)`
     
     for (let num = 0; num < size; num++) {
         let grid = document.createElement("div")
@@ -38,11 +38,17 @@ function gridCreation() {
     }
 }
 
+const valueParagraph = document.querySelector('.sliderValue')
+
+function valueDisplay() {
+    valueParagraph.innerText = sizeSlider.value
+}
+
 function changeColor(event) {
     event.target.style.backgroundColor = '#fefefe'
   }
 
 
 gridCreation()
-
+valueDisplay()
 
