@@ -20,6 +20,7 @@ rainMode.onclick = (e)=>{
 }
 clearMode.onclick = ()=>{
     clear()
+    gridSize(slider.value)
 }
 slider.onmousemove = (e) => sliderSizeDisplay.innerText = `${slider.value} x ${slider.value}`
 slider.onchange = (e) => {
